@@ -1,5 +1,5 @@
 import 'dart:core';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -33,7 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
     size: 25,
   );
 
-  void handlerOnPressed() => print('Pressed...');
+  void handlerOnPressed() {
+    String hms = DateFormat.Hms().format(new DateTime.now()).toString();
+    print('Pressed...$hms');
+  }
 
   @override
   Widget build(BuildContext context) {
