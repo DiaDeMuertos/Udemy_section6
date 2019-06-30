@@ -38,6 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
     print('Pressed...$hms');
   }
 
+  Function handlerOnTap(value) => () {
+    String hms = DateFormat.Hms().format(new DateTime.now()).toString();
+    print('${value['id']} - ${value['message']} - $hms');
+  };
+
   List<Widget> chipsBuilder() {
     List<Map<String, dynamic>> values = [
       {'id': 1, 'message': 'Hello'},
@@ -46,13 +51,16 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     return values.map((value) {
-      return Chip(
-        label: Text(value['message']),
-        avatar: CircleAvatar(
-          child: value['id'] % 2 == 0
-              ? Icon(Icons.account_circle)
-              : Text(value['id'].toString()),
+      return GestureDetector(
+        child: Chip(
+          label: Text(value['message']),
+          avatar: CircleAvatar(
+            child: value['id'] % 2 == 0
+                ? Icon(Icons.account_circle)
+                : Text(value['id'].toString()),
+          ),
         ),
+        onTap: handlerOnTap(value),
       );
     }).toList();
   }
@@ -72,6 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: handlerOnPressed,
             ),
             ...chipsBuilder(),
+            Tooltip(
+              message: 'List of Widgets',
+              child: Text('Hold to show Tooltip'),
+            )
           ],
         ),
       ),
