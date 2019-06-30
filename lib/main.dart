@@ -38,6 +38,25 @@ class _MyHomePageState extends State<MyHomePage> {
     print('Pressed...$hms');
   }
 
+  List<Widget> chipsBuilder() {
+    List<Map<String, dynamic>> values = [
+      {'id': 1, 'message': 'Hello'},
+      {'id': 2, 'message': 'World'},
+      {'id': 3, 'message': 'HMO'},
+    ];
+
+    return values.map((value) {
+      return Chip(
+        label: Text(value['message']),
+        avatar: CircleAvatar(
+          child: value['id'] % 2 == 0
+              ? Icon(Icons.account_circle)
+              : Text(value['id'].toString()),
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: icn,
               onPressed: handlerOnPressed,
             ),
+            ...chipsBuilder(),
           ],
         ),
       ),
