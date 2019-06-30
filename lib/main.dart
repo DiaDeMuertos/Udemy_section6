@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -25,6 +27,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Icon icn = Icon(
+    Icons.supervisor_account,
+    color: Colors.red,
+    size: 25,
+  );
+
+  void handlerOnPressed() => print('Pressed...');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            IconButton(
+              icon: icn,
+              onPressed: handlerOnPressed,
+            ),
+          ],
         ),
       ),
     );
